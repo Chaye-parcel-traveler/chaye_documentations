@@ -13,6 +13,10 @@ Il doit etre lu avant toute issue concernant:
 - les obligations DSA / LCEN;
 - les traces d'audit.
 
+Documents utiles:
+
+- `roles-et-autorisations.md`: explique les roles utilisateur et les regles d'autorisation admin.
+
 Mettre a jour ce dossier quand:
 
 - une obligation legale est precisee;
