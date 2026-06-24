@@ -1,10 +1,10 @@
-# ADR
+# Decisions
 
-ADR signifie `Architecture Decision Record`.
+Ce dossier remplace le vocabulaire `ADR` par un nom francais plus lisible pour l'equipe: decisions.
 
 Ce dossier trace les decisions importantes qui impactent plusieurs repos ou l'organisation produit.
 
-Une ADR doit expliquer:
+Une decision doit expliquer:
 
 - le contexte;
 - la decision;

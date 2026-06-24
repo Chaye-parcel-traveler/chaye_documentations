@@ -54,17 +54,18 @@ flowchart TD
 
 | Sujet | Emplacement |
 | --- | --- |
-| Vision produit | `product/vision.md` |
-| Glossaire | `product/glossary.md` |
-| Parcours utilisateur | `product/user-journeys.md` |
-| Specification fonctionnelle | `product/spec.md` |
-| Backlog produit | `product/backlog.md` |
-| Tracabilite besoin -> issue -> PR | `product/traceability.md` |
-| Mentions legales, CGU, moderation | `compliance/` |
-| Workflow equipe et agentique | `workflows/` |
-| Contrats API valides cote produit | `contracts/` |
-| Decisions structurantes | `adr/` |
-| Diagrammes explicatifs | `diagrams/` |
+| Vision produit | `produit/vision.md` |
+| Glossaire | `produit/glossaire.md` |
+| Parcours utilisateur | `produit/parcours-utilisateur.md` |
+| Specification fonctionnelle | `produit/specification.md` |
+| Backlog produit | `produit/backlog.md` |
+| Tracabilite besoin -> issue -> PR | `produit/tracabilite.md` |
+| Mentions legales, CGU, moderation | `conformite/` |
+| Processus equipe et agentique | `processus/` |
+| Contrats API valides cote produit | `contrats/` |
+| Decisions structurantes | `decisions/` |
+| Diagrammes explicatifs | `diagrammes/` |
+| Documents PDF d'origine | `sources-pdf/` |
 
 ## Ce Qui Ne Va Pas Ici
 
@@ -92,21 +93,23 @@ Ces informations restent dans:
 Lis dans cet ordre:
 
 1. `README.md`
-2. `product/README.md`
-3. `product/glossary.md`
-4. `product/user-journeys.md`
-5. `workflows/onboarding-new-dev.md`
-6. `workflows/github-issues.md`
-7. `workflows/agentic-workflow.md`
-8. `compliance/README.md`
+2. `produit/README.md`
+3. `produit/glossaire.md`
+4. `produit/parcours-utilisateur.md`
+5. `processus/onboarding-nouveau-dev.md`
+6. `processus/issues-github.md`
+7. `processus/travail-agentique.md`
+8. `conformite/README.md`
+9. `sources-pdf/README.md`
 
 ```mermaid
 flowchart TD
     Start["Je rejoins le projet"] --> Readme["Lire README.md"]
-    Readme --> Product["Comprendre le produit<br/>product/"]
-    Product --> Workflow["Comprendre comment travailler<br/>workflows/"]
-    Workflow --> Compliance["Connaitre les contraintes legales<br/>compliance/"]
-    Compliance --> Issue["Choisir une issue GitHub"]
+    Readme --> Produit["Comprendre le produit<br/>produit/"]
+    Produit --> Processus["Comprendre comment travailler<br/>processus/"]
+    Processus --> Conformite["Connaitre les contraintes legales<br/>conformite/"]
+    Conformite --> Sources["Connaitre les PDF sources<br/>sources-pdf/"]
+    Sources --> Issue["Choisir une issue GitHub"]
 ```
 
 ## Workflow Avec Les Issues GitHub
@@ -154,8 +157,8 @@ Le repo documentation vit en francais.
 flowchart TB
     FR["Francais obligatoire"] --> FR1["Explications produit"]
     FR --> FR2["Regles metier"]
-    FR --> FR3["Workflows equipe"]
-    FR --> FR4["ADR produit"]
+    FR --> FR3["Processus equipe"]
+    FR --> FR4["Decisions produit"]
     FR --> FR5["Issues et PRs de documentation"]
 
     TECH["Termes techniques conserves"] --> T1["Endpoints: `POST /members`"]

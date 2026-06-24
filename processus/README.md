@@ -1,4 +1,4 @@
-# Workflows
+# Processus
 
 Ce dossier explique comment l'equipe travaille.
 
@@ -12,8 +12,8 @@ Il doit etre lu par:
 Il sert a cadrer:
 
 - l'onboarding;
-- le workflow GitHub issues;
-- le workflow pull request;
+- le processus GitHub issues;
+- le processus pull request;
 - la Definition of Done;
 - le travail agentique.
 

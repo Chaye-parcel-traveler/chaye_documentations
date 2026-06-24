@@ -24,8 +24,8 @@ Il sert a cadrer:
 - les parcours utilisateur;
 - les decisions produit;
 - la conformite;
-- le workflow equipe;
-- le workflow agentique;
+- le processus equipe;
+- le processus agentique;
 - la tracabilite besoin -> issue -> PR.
 
 Il ne sert pas a stocker les details techniques propres a un seul repo.
@@ -54,6 +54,30 @@ Les details d'execution restent dans les repos techniques:
 Quand une information produit existe seulement dans un repo technique, propose de la remonter ici.
 
 Quand une information est purement technique, ne la duplique pas ici.
+
+## Noms Des Dossiers
+
+Les dossiers de ce repo doivent etre nommes en francais.
+
+Exemples attendus:
+
+- `produit/`
+- `conformite/`
+- `processus/`
+- `contrats/`
+- `decisions/`
+- `diagrammes/`
+- `sources-pdf/`
+
+Ne pas creer de nouveau dossier avec un nom anglais si un nom francais clair existe.
+
+## Sources PDF
+
+Les PDF d'origine sont stockes dans `sources-pdf/`.
+
+Ils servent de sources historiques. Quand une information d'un PDF est utile au projet, elle doit etre reprise dans un fichier Markdown en francais, dans le dossier adapte.
+
+Ne laisse pas une regle importante uniquement dans un PDF.
 
 ## Workflow Recommande
 
