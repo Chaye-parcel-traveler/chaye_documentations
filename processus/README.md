@@ -14,8 +14,13 @@ Il sert a cadrer:
 - l'onboarding;
 - le processus GitHub issues;
 - le processus pull request;
+- l'utilisation de GitHub CLI `gh`;
 - la Definition of Done;
 - le travail agentique.
+
+Documents utiles:
+
+- `github-cli-gh.md`: explique comment installer, authentifier et utiliser `gh` pour les issues, PRs et checks.
 
 Mettre a jour ce dossier quand:
 

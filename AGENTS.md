@@ -95,12 +95,17 @@ Ne laisse pas une regle importante uniquement dans un PDF.
 - Les criteres d'acceptation doivent etre en francais.
 - Les labels peuvent rester en anglais pour l'automatisation, par exemple `agent:ready`, `type:documentation`, `risk:legal`.
 - Utiliser `gh` quand l'authentification GitHub est disponible.
+- Verifier l'authentification avec `gh auth status` avant toute action GitHub.
+- Si `gh` n'est pas authentifie, demander a un humain d'executer `gh auth login -h github.com`.
+- Ne pas creer d'issue ou de PR sans verifier les doublons via `gh`.
 
 Avant de creer une issue, verifier les doublons:
 
 ```bash
 gh issue list --repo Chaye-parcel-traveler/chaye_documentations --state all --limit 100 --json number,title
 ```
+
+Voir aussi `processus/github-cli-gh.md`.
 
 ## Definition De Fini
 
