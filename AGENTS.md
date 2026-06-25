@@ -94,6 +94,8 @@ Ne laisse pas une regle importante uniquement dans un PDF.
 - Les issues de documentation doivent etre en francais.
 - Les criteres d'acceptation doivent etre en francais.
 - Les labels peuvent rester en anglais pour l'automatisation, par exemple `agent:ready`, `type:documentation`, `risk:legal`.
+- Une issue agentique doit produire une valeur verifiable, pas seulement modifier un fichier, une table ou une commande.
+- Utiliser `size:M` comme taille cible pour les agents; marquer `agent:too-small`, `agent:too-large` ou `agent:needs-scope` quand le cadrage n'est pas bon.
 - Utiliser `gh` quand l'authentification GitHub est disponible.
 - Verifier l'authentification avec `gh auth status` avant toute action GitHub.
 - Si `gh` n'est pas authentifie, demander a un humain d'executer `gh auth login -h github.com`.
@@ -106,6 +108,7 @@ gh issue list --repo Chaye-parcel-traveler/chaye_documentations --state all --li
 ```
 
 Voir aussi `processus/github-cli-gh.md`.
+Voir aussi `processus/granularite-issues-agentiques.md`.
 
 ## Definition De Fini
 

@@ -100,8 +100,9 @@ Lis dans cet ordre:
 6. `processus/issues-github.md`
 7. `processus/travail-agentique.md`
 8. `processus/github-cli-gh.md`
-9. `conformite/README.md`
-10. `sources-pdf/README.md`
+9. `processus/granularite-issues-agentiques.md`
+10. `conformite/README.md`
+11. `sources-pdf/README.md`
 
 ```mermaid
 flowchart TD

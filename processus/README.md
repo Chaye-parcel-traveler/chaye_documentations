@@ -21,6 +21,7 @@ Il sert a cadrer:
 Documents utiles:
 
 - `github-cli-gh.md`: explique comment installer, authentifier et utiliser `gh` pour les issues, PRs et checks.
+- `granularite-issues-agentiques.md`: explique comment eviter les issues trop petites ou trop larges pour les agents.
 
 Mettre a jour ce dossier quand:
 
