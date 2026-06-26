@@ -109,6 +109,21 @@ gh issue list --repo Chaye-parcel-traveler/chaye_documentations --state all --li
 
 Voir aussi `processus/github-cli-gh.md`.
 Voir aussi `processus/granularite-issues-agentiques.md`.
+Voir aussi `processus/tests-docker-first.md`.
+Voir aussi `processus/workflow-pr-agentique.md`.
+
+## Tests Et Quality Gates
+
+- Les agents doivent toujours essayer les quality gates Docker avant toute commande host.
+- Les commandes host ne sont qu'un fallback documente quand Docker est indisponible ou ne couvre pas encore la verification.
+- Les details techniques des commandes restent dans les repos `chaye_API` et `chaye_web_frontend`.
+
+## PR Agentiques
+
+- Une PR feature doit rester centree sur code, tests, migrations et OpenAPI si le contrat API change.
+- Ne pas modifier `AGENTS.md`, quality gates, Docker docs, backlog, traceability ou code-vs-spec dans une PR feature sauf demande explicite.
+- Les mises a jour de gouvernance vont dans une PR `OPS`.
+- Les synchronisations documentaires globales vont dans une PR `docs-sync`.
 
 ## Definition De Fini
 
