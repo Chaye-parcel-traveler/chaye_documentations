@@ -109,6 +109,13 @@ gh issue list --repo Chaye-parcel-traveler/chaye_documentations --state all --li
 
 Voir aussi `processus/github-cli-gh.md`.
 Voir aussi `processus/granularite-issues-agentiques.md`.
+Voir aussi `processus/tests-docker-first.md`.
+
+## Tests Et Quality Gates
+
+- Les agents doivent toujours essayer les quality gates Docker avant toute commande host.
+- Les commandes host ne sont qu'un fallback documente quand Docker est indisponible ou ne couvre pas encore la verification.
+- Les details techniques des commandes restent dans les repos `chaye_API` et `chaye_web_frontend`.
 
 ## Definition De Fini
 

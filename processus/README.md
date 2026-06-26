@@ -22,6 +22,7 @@ Documents utiles:
 
 - `github-cli-gh.md`: explique comment installer, authentifier et utiliser `gh` pour les issues, PRs et checks.
 - `granularite-issues-agentiques.md`: explique comment eviter les issues trop petites ou trop larges pour les agents.
+- `tests-docker-first.md`: explique pourquoi les agents doivent lancer les tests via Docker avant tout fallback host.
 
 Mettre a jour ce dossier quand:
 
