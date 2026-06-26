@@ -16,6 +16,7 @@ Il doit etre lu avant toute issue concernant:
 Documents utiles:
 
 - `roles-et-autorisations.md`: explique les roles utilisateur et les regles d'autorisation admin.
+- `cgu-workflow-front-api.md`: cadre l'alignement frontend/API pour l'acceptation et la reacceptation des CGU.
 
 Mettre a jour ce dossier quand:
 
