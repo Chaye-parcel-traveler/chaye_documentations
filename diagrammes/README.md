@@ -1,14 +1,9 @@
 # Diagrammes
 
-Ce dossier regroupe les diagrammes utiles pour comprendre Chaye.
+Ce dossier regroupe les diagrammes transverses utiles à la compréhension de Chaye.
 
-Utiliser Mermaid en priorite pour garder les diagrammes lisibles dans GitHub et faciles a modifier.
+Utiliser Mermaid en priorité afin de conserver des diagrammes lisibles dans GitHub et faciles à modifier.
 
-Mettre a jour ce dossier quand:
+Ajouter un diagramme uniquement lorsqu’il clarifie mieux le sujet qu’un texte ou un tableau. Un diagramme trop complexe doit être séparé en plusieurs vues.
 
-- un parcours devient difficile a expliquer en texte seul;
-- une architecture transverse change;
-- un workflow equipe change;
-- une sequence API/frontend doit etre clarifiee.
-
-Un bon diagramme doit rester simple. S'il devient trop grand, le decouper en plusieurs diagrammes.
+Chaque diagramme doit indiquer le document fonctionnel ou la décision qu’il illustre.

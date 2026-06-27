@@ -1,96 +1,98 @@
-# Workflow CGU Frontend/API
+# Workflow CGU frontend/API
 
-Ce document cadre le workflow d'acceptation des CGU entre le frontend et l'API.
+Ce document cadre le workflow d’acceptation des CGU entre le frontend et l’API.
 
-Public concerne:
+## Public concerné
 
-- agents frontend qui implementent `FE-CGU-001`;
-- agents API qui font evoluer `API-CGU-001` ou `API-CGU-002`;
-- equipe produit/conformite qui valide la source de version CGU.
+- agents frontend qui implémentent `FE-CGU-001` ;
+- agents API qui font évoluer `API-CGU-001` ou `API-CGU-002` ;
+- équipe produit et conformité qui valide la source de la version des CGU.
 
-Lire ce document avant de modifier:
+## Quand le lire
 
-- l'inscription frontend;
-- les endpoints `POST /members` et `POST /auth/accept-cgu`;
-- le contenu ou la version des CGU;
-- un futur flux de reacceptation apres mise a jour des CGU.
+Lire ce document avant de modifier :
 
-Mettre a jour ce document quand:
+- l’inscription frontend ;
+- les endpoints `POST /members` et `POST /auth/accept-cgu` ;
+- le contenu ou la version des CGU ;
+- un futur parcours de réacceptation après une mise à jour des CGU.
 
-- la source de la version CGU courante est tranchee;
-- un endpoint de configuration legale est ajoute;
-- `/me` expose un indicateur de reacceptation;
-- le format de version CGU change.
+## Quand le mettre à jour
 
-Repos concernes:
+Mettre à jour ce document lorsque :
+
+- la source de la version courante des CGU est tranchée ;
+- un endpoint de configuration légale est ajouté ;
+- `/me` expose un indicateur de réacceptation ;
+- le format de version des CGU change.
+
+Dépôts concernés :
 
 - `chaye_API`
 - `chaye_web_frontend`
 
-## Capacites API Actuelles
+## Capacités API actuelles
 
-L'API sait historiser une acceptation CGU quand le frontend fournit une version.
+L’API sait historiser une acceptation des CGU lorsque le frontend fournit une version.
 
-Capacites disponibles:
+Capacités disponibles :
 
-- `POST /members` accepte `acceptedCguVersion` pendant l'inscription.
-- `POST /auth/accept-cgu` accepte `acceptedCguVersion` pour un utilisateur authentifie.
-- L'API stocke l'utilisateur, la version, l'horodatage serveur et l'adresse IP.
-- Plusieurs acceptations par utilisateur sont autorisees pour historiser les nouvelles versions.
+- `POST /members` accepte `acceptedCguVersion` pendant l’inscription ;
+- `POST /auth/accept-cgu` accepte `acceptedCguVersion` pour un utilisateur authentifié ;
+- l’API stocke l’utilisateur, la version, l’horodatage serveur et l’adresse IP ;
+- plusieurs acceptations par utilisateur sont autorisées afin d’historiser les nouvelles versions.
 
-Limites actuelles:
+Limites actuelles :
 
-- l'API ne fournit pas encore la version CGU courante;
-- l'API ne dit pas encore, via `/me`, si l'utilisateur doit re-accepter une version plus recente;
-- le contenu des CGU et son URL canonique ne sont pas encore formalises ici.
+- l’API ne fournit pas encore la version courante des CGU ;
+- l’API n’indique pas encore, via `/me`, si l’utilisateur doit accepter une version plus récente ;
+- le contenu des CGU et son URL canonique ne sont pas encore formalisés ici.
 
-## Workflow Frontend Minimal Attendu
+## Workflow frontend minimal attendu
 
-Pour l'inscription:
+Pour l’inscription :
 
 1. Le formulaire affiche une case CGU obligatoire.
-2. La soumission est bloquee cote frontend si la case n'est pas cochee.
+2. La soumission est bloquée côté frontend si la case n’est pas cochée.
 3. Le payload `POST /members` contient `acceptedCguVersion`.
-4. Les erreurs backend restent visibles, notamment la validation `acceptedCguVersion`.
-5. Le frontend ne doit pas inventer une preuve d'acceptation locale; la preuve est la ligne API.
+4. Les erreurs backend restent visibles, notamment l’erreur de validation de `acceptedCguVersion`.
+5. Le frontend ne doit pas inventer une preuve d’acceptation locale ; la preuve est conservée par l’API.
 
-Pour une future reacceptation:
+Pour une future réacceptation :
 
-1. L'utilisateur authentifie voit la version CGU a accepter.
-2. L'utilisateur confirme explicitement l'acceptation.
+1. L’utilisateur authentifié voit la version des CGU à accepter.
+2. L’utilisateur confirme explicitement son acceptation.
 3. Le frontend appelle `POST /auth/accept-cgu` avec `acceptedCguVersion`.
-4. Le frontend considere la reacceptation terminee seulement apres succes API.
+4. Le frontend considère la réacceptation comme terminée uniquement après le succès de l’API.
 
-## Decisions A Prendre
+## Décisions à prendre
 
-Ces decisions doivent etre tranchees avant de considerer `FE-CGU-001` complet en production.
+Ces décisions doivent être tranchées avant de considérer `FE-CGU-001` comme complet en production.
 
-| Decision | Options | Impact si non tranche |
+| Décision | Options | Impact en l’absence de décision |
 | --- | --- | --- |
-| Source de la version CGU courante | Configuration frontend versionnee, par exemple `VITE_CURRENT_CGU_VERSION`; ou endpoint public API de configuration legale. | Le frontend peut afficher la case, mais ne sait pas quelle valeur fiable envoyer dans `acceptedCguVersion`. |
-| Format de version CGU | Date ISO, version semantique, ou identifiant documentaire. | Les preuves seront difficiles a rapprocher du document CGU publie. |
-| Source du contenu CGU | Page statique frontend, CMS/document versionne, ou endpoint/public asset API. | La case peut pointer vers un contenu absent ou non versionne. |
-| Detection de reacceptation | `/me` expose `latestAcceptedCguVersion`/`mustAcceptCgu`; ou le frontend force un modal apres deploiement; ou un endpoint dedie existe. | `POST /auth/accept-cgu` est utilisable, mais le frontend ne sait pas robustement qui doit re-accepter. |
+| Source de la version courante des CGU | Configuration frontend versionnée, par exemple `VITE_CURRENT_CGU_VERSION`, ou endpoint public de configuration légale | Le frontend peut afficher la case, mais ne sait pas quelle valeur fiable envoyer dans `acceptedCguVersion`. |
+| Format de version des CGU | Date ISO, version sémantique ou identifiant documentaire | Les preuves seront difficiles à rapprocher du document publié. |
+| Source du contenu des CGU | Page statique frontend, CMS ou document versionné, ou endpoint public de l’API | La case peut pointer vers un contenu absent ou non versionné. |
+| Détection de la réacceptation | `/me` expose `latestAcceptedCguVersion` ou `mustAcceptCgu`, un endpoint dédié existe, ou un parcours temporaire est défini | `POST /auth/accept-cgu` reste utilisable, mais le frontend ne sait pas déterminer de manière fiable qui doit accepter les nouvelles CGU. |
 
-## Recommandation Produit/Technique
+## Recommandations produit et techniques
 
-Decision recommandee pour un MVP simple:
+Pour un MVP simple :
 
-- stocker la version CGU courante dans une configuration frontend explicite;
-- utiliser une date ISO lisible, par exemple `2026-06-01`;
-- afficher un lien vers la page CGU/mentions legales publiee;
-- traiter la detection fine de reacceptation dans une issue separee si aucune mise a jour CGU n'est prevue immediatement.
+- stocker la version courante des CGU dans une configuration frontend explicite ;
+- utiliser une date ISO lisible, par exemple `2026-06-01` ;
+- afficher un lien vers la page publiée des CGU ou des mentions légales ;
+- traiter la détection fine de la réacceptation dans une issue séparée si aucune mise à jour des CGU n’est prévue immédiatement.
 
-Decision recommandee pour un workflow plus robuste:
+Pour un workflow plus robuste :
 
-- ajouter un endpoint public de configuration legale expose par l'API;
-- exposer dans `/me` la derniere version CGU acceptee et/ou `mustAcceptCgu`;
-- bloquer les actions sensibles tant que `mustAcceptCgu` est vrai.
+- ajouter un endpoint public de configuration légale exposé par l’API ;
+- exposer dans `/me` la dernière version acceptée et/ou `mustAcceptCgu` ;
+- bloquer les actions sensibles tant que `mustAcceptCgu` vaut `true`.
 
-## Etat D'Alignement
+## État d’alignement
 
-Etat actuel:
-
-- API: capable d'enregistrer les acceptations si le frontend fournit une version.
-- Frontend: non aligne tant que `acceptedCguVersion` n'est pas envoye a `POST /members`.
-- Spec: le besoin "case obligatoire + envoyer la version" existe, mais les decisions ci-dessus restent a prendre.
+- API : capable d’enregistrer les acceptations lorsque le frontend fournit une version.
+- Frontend : non aligné tant que `acceptedCguVersion` n’est pas envoyé à `POST /members`.
+- Spécification : le besoin « case obligatoire et envoi de la version » existe, mais les décisions ci-dessus restent à prendre.

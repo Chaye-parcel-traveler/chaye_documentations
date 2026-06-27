@@ -1,19 +1,16 @@
-# Decisions
+# Décisions
 
-Ce dossier remplace le vocabulaire `ADR` par un nom francais plus lisible pour l'equipe: decisions.
+Ce dossier trace les décisions structurantes qui affectent plusieurs dépôts ou l’organisation produit.
 
-Ce dossier trace les decisions importantes qui impactent plusieurs repos ou l'organisation produit.
+Une décision doit préciser :
 
-Une decision doit expliquer:
+- le contexte ;
+- la date ;
+- les participants ou responsables de validation ;
+- la décision ;
+- les alternatives considérées ;
+- les conséquences ;
+- les preuves ou sources utilisées ;
+- les dépôts et issues concernés.
 
-- le contexte;
-- la decision;
-- les alternatives considerees;
-- les consequences;
-- les repos impactes.
-
-Mettre a jour ce dossier quand:
-
-- une decision structurante est prise;
-- une ancienne decision est remplacee;
-- une decision impacte a la fois produit, API et frontend.
+Lorsqu’une décision fait évoluer un PDF historique, le PDF reste inchangé. La décision Markdown devient l’explication courante et doit être reliée à `produit/alignement-des-sources.md`.

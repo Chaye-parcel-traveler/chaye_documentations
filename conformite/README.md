@@ -1,27 +1,35 @@
-# Conformite
+# Conformité
 
-Ce dossier contient les contraintes legales et de confiance applicables a Chaye.
+Ce dossier contient les contraintes juridiques et les règles de confiance applicables à Chaye.
 
-Il doit etre lu avant toute issue concernant:
+## Public concerné
 
-- les mentions legales;
-- les CGU;
-- les signalements;
-- la moderation;
-- la suspension de compte;
-- les mineurs;
-- les obligations DSA / LCEN;
-- les traces d'audit.
+- équipe produit ;
+- développeurs API et frontend ;
+- reviewers ;
+- conseil juridique ;
+- agents IA.
 
-Documents utiles:
+## Documents
 
-- `roles-et-autorisations.md`: explique les roles utilisateur et les regles d'autorisation admin.
-- `cgu-workflow-front-api.md`: cadre l'alignement frontend/API pour l'acceptation et la reacceptation des CGU.
+- `roles-et-autorisations.md` : décrit les rôles utilisateur et les règles d’autorisation.
+- `cgu-workflow-front-api.md` : cadre l’alignement entre le frontend et l’API pour l’acceptation et la réacceptation des CGU.
 
-Mettre a jour ce dossier quand:
+## Quand le lire
 
-- une obligation legale est precisee;
-- un parcours de moderation change;
-- un statut utilisateur est ajoute;
-- un delai de traitement est modifie;
-- une decision de conformite impacte l'API ou le frontend.
+Lire ce dossier avant toute issue concernant :
+
+- les mentions légales ;
+- les CGU ;
+- les signalements ;
+- la modération ;
+- la suspension d’un compte ;
+- les mineurs ;
+- les obligations DSA ou LCEN ;
+- les traces d’audit.
+
+## Quand le mettre à jour
+
+Mettre à jour ce dossier lorsqu’une obligation est confirmée, qu’un parcours de modération change ou qu’une décision de conformité affecte l’API ou le frontend.
+
+Une affirmation issue d’un brief PDF reste à valider tant que l’avis juridique correspondant n’est pas joint ou référencé.

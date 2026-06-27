@@ -1,65 +1,80 @@
-# Guide Agentique - Chaye Documentations
+# Guide agentique - Chaye Documentations
 
-Ce fichier est le point d'entree pour les agents IA qui travaillent dans `chaye_documentations`.
+Ce fichier est le point d’entrée des agents IA qui travaillent dans `chaye_documentations`.
 
-## Langue
+## Langue et qualité rédactionnelle
 
-- Ecrire en francais.
-- Garder les termes techniques en anglais seulement quand ils correspondent a des tokens reels: endpoints, champs, commandes, labels, noms de fichiers, noms de repos.
+- Rédiger en français clair, précis et correctement accentué.
+- Vérifier l’orthographe, les accords, la ponctuation et la cohérence du vocabulaire.
+- Conserver en anglais uniquement les termes techniques réels : endpoints, champs, commandes, labels, noms de fichiers et noms de dépôts.
 - Ne pas traduire les identifiants techniques.
 
-Exemple:
+Exemple :
 
 ```text
-L'utilisateur suspendu ne peut pas appeler `POST /announcements`.
+L’utilisateur suspendu ne peut pas appeler `POST /announcements`.
 ```
 
-## Role Du Repo
+## Rôle du dépôt
 
-Ce repo est la source de verite produit et organisationnelle transverse.
+Ce dépôt est la source de vérité produit et organisationnelle transverse.
 
-Il sert a cadrer:
+Il sert à cadrer :
 
-- les regles metier;
-- les parcours utilisateur;
-- les decisions produit;
-- la conformite;
-- le processus equipe;
-- le processus agentique;
-- la tracabilite besoin -> issue -> PR.
+- les règles métier ;
+- les parcours utilisateur ;
+- les décisions produit ;
+- la conformité ;
+- les processus d’équipe et agentiques ;
+- la traçabilité entre besoin, issue et PR.
 
-Il ne sert pas a stocker les details techniques propres a un seul repo.
+Les détails techniques propres à un seul dépôt restent dans :
 
-## Regle De Note Explicative
+- `../chaye_API/AGENTS.md` et `../chaye_API/docs/` ;
+- `../chaye_web_frontend/AGENTS.md` et `../chaye_web_frontend/docs/`.
 
-Chaque nouveau dossier ou document structurant doit expliquer:
+## Sources PDF immuables
 
-- son objectif;
-- son public;
-- quand le lire;
-- quand le mettre a jour;
-- quels repos ou issues sont concernes.
+Les PDF stockés dans `sources-pdf/` sont des sources historiques initiales.
 
-Si tu ajoutes une page sans expliquer comment l'utiliser, la documentation devient difficile a maintenir.
+Un agent ne doit jamais :
 
-## Sources Techniques
+- modifier un PDF existant ;
+- remplacer un PDF par une version corrigée ;
+- régénérer un PDF pour y intégrer une évolution fonctionnelle ;
+- présenter silencieusement un PDF dérivé comme une nouvelle source de vérité.
 
-Les details d'execution restent dans les repos techniques:
+Toute correction, évolution fonctionnelle ou divergence doit être expliquée dans un fichier Markdown daté. Ce Markdown doit citer le PDF et les pages concernés, préciser le statut de l’information et indiquer si une validation humaine, juridique, financière ou technique reste nécessaire.
 
-- `../chaye_API/AGENTS.md`
-- `../chaye_API/docs/`
-- `../chaye_web_frontend/AGENTS.md`
-- `../chaye_web_frontend/docs/`
+Le référentiel courant se trouve dans `produit/alignement-des-sources.md`.
 
-Quand une information produit existe seulement dans un repo technique, propose de la remonter ici.
+## Organisation des sources
 
-Quand une information est purement technique, ne la duplique pas ici.
+| Information | Source de vérité |
+| --- | --- |
+| Sources historiques initiales | `sources-pdf/` |
+| Règles produit et décisions fonctionnelles courantes | `produit/` et `decisions/` |
+| Conformité et règles de confiance | `conformite/` |
+| Processus d’équipe et agentiques | `processus/workflow-agentique.md` |
+| Contrats HTTP publics | `../chaye_API/docs/openapi/openapi.yaml` |
+| Backlog et statut d’implémentation | GitHub Issues et PR |
+| Détails techniques locaux | Dépôt technique concerné |
 
-## Noms Des Dossiers
+## Note explicative obligatoire
 
-Les dossiers de ce repo doivent etre nommes en francais.
+Chaque nouveau document structurant doit expliquer :
 
-Exemples attendus:
+- son objectif ;
+- son public ;
+- quand le lire ;
+- quand le mettre à jour ;
+- les dépôts, décisions ou issues concernés.
+
+## Noms des dossiers
+
+Les dossiers doivent être nommés en français lorsqu’un nom français clair existe.
+
+Exemples :
 
 - `produit/`
 - `conformite/`
@@ -69,68 +84,39 @@ Exemples attendus:
 - `diagrammes/`
 - `sources-pdf/`
 
-Ne pas creer de nouveau dossier avec un nom anglais si un nom francais clair existe.
+## Workflow obligatoire
 
-## Sources PDF
-
-Les PDF d'origine sont stockes dans `sources-pdf/`.
-
-Ils servent de sources historiques. Quand une information d'un PDF est utile au projet, elle doit etre reprise dans un fichier Markdown en francais, dans le dossier adapte.
-
-Ne laisse pas une regle importante uniquement dans un PDF.
-
-## Workflow Recommande
-
-1. Lire `README.md`.
-2. Identifier le document concerne.
-3. Verifier si la meme information existe deja.
-4. Mettre a jour la documentation en francais.
-5. Ajouter ou corriger les liens vers les issues GitHub.
-6. Mettre a jour la tracabilite si le statut produit change.
-7. Ouvrir une PR claire.
+1. Lire l’issue GitHub avec `gh issue view`.
+2. Lire le PDF source sans le modifier.
+3. Vérifier si un Markdown plus récent explique déjà une évolution.
+4. Identifier les contradictions et les validations encore nécessaires.
+5. Mettre à jour le document propriétaire de l’information, sans dupliquer les autres dépôts.
+6. Vérifier les liens, l’orthographe et le rendu Markdown.
+7. Ouvrir une PR documentaire claire avec `gh`.
 
 ## Issues GitHub
 
-- Les issues de documentation doivent etre en francais.
-- Les criteres d'acceptation doivent etre en francais.
-- Les labels peuvent rester en anglais pour l'automatisation, par exemple `agent:ready`, `type:documentation`, `risk:legal`.
-- Une issue agentique doit produire une valeur verifiable, pas seulement modifier un fichier, une table ou une commande.
-- Utiliser `size:M` comme taille cible pour les agents; marquer `agent:too-small`, `agent:too-large` ou `agent:needs-scope` quand le cadrage n'est pas bon.
-- Utiliser `gh` quand l'authentification GitHub est disponible.
-- Verifier l'authentification avec `gh auth status` avant toute action GitHub.
-- Si `gh` n'est pas authentifie, demander a un humain d'executer `gh auth login -h github.com`.
-- Ne pas creer d'issue ou de PR sans verifier les doublons via `gh`.
-
-Avant de creer une issue, verifier les doublons:
+- Les issues, critères d’acceptation et descriptions fonctionnelles sont rédigés en français.
+- Les labels techniques restent en anglais pour l’automatisation.
+- Une issue agentique doit produire une valeur vérifiable.
+- La taille cible est `size:M`.
+- Avant toute création, vérifier les doublons :
 
 ```bash
+gh auth status
 gh issue list --repo Chaye-parcel-traveler/chaye_documentations --state all --limit 100 --json number,title
 ```
 
-Voir aussi `processus/github-cli-gh.md`.
-Voir aussi `processus/granularite-issues-agentiques.md`.
-Voir aussi `processus/tests-docker-first.md`.
-Voir aussi `processus/workflow-pr-agentique.md`.
+Le workflow complet se trouve dans `processus/workflow-agentique.md`.
 
-## Tests Et Quality Gates
+## Définition de fini
 
-- Les agents doivent toujours essayer les quality gates Docker avant toute commande host.
-- Les commandes host ne sont qu'un fallback documente quand Docker est indisponible ou ne couvre pas encore la verification.
-- Les details techniques des commandes restent dans les repos `chaye_API` et `chaye_web_frontend`.
+Une modification documentaire est terminée lorsque :
 
-## PR Agentiques
-
-- Une PR feature doit rester centree sur code, tests, migrations et OpenAPI si le contrat API change.
-- Ne pas modifier `AGENTS.md`, quality gates, Docker docs, backlog, traceability ou code-vs-spec dans une PR feature sauf demande explicite.
-- Les mises a jour de gouvernance vont dans une PR `OPS`.
-- Les synchronisations documentaires globales vont dans une PR `docs-sync`.
-
-## Definition De Fini
-
-Une modification de documentation est terminee quand:
-
-- le contenu est clair pour un nouveau membre de l'equipe;
-- le document explique comment il doit etre utilise;
-- les liens vers les repos techniques sont corrects;
-- les decisions importantes sont tracees;
-- les impacts API/frontend sont visibles si besoin.
+- le contenu est compréhensible par un nouveau membre de l’équipe ;
+- les sources et pages PDF sont citées lorsqu’elles sont pertinentes ;
+- les décisions, hypothèses et points à valider sont clairement distingués ;
+- aucun PDF historique n’a été modifié ;
+- les liens internes sont valides ;
+- l’orthographe et la ponctuation ont été relues ;
+- les impacts API et frontend sont visibles si nécessaire.
