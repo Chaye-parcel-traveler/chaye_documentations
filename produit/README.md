@@ -1,22 +1,25 @@
 # Produit
 
-Ce dossier contient la documentation produit de Chaye.
+Ce dossier contient les règles produit et les décisions fonctionnelles courantes de Chaye.
 
-Il doit etre lu avant de creer ou modifier une fonctionnalite importante.
+## Public concerné
 
-Il sert a expliquer:
+- équipe produit ;
+- développeurs API et frontend ;
+- reviewers ;
+- agents IA ;
+- intervenants juridiques ou financiers lorsqu’un arbitrage les concerne.
 
-- la vision produit;
-- les utilisateurs;
-- les parcours;
-- les regles metier;
-- le backlog fonctionnel;
-- la tracabilite entre besoins, issues et PRs.
+## Documents
 
-Mettre a jour ce dossier quand:
+- `alignement-des-sources.md` : compare le cahier des charges aux PDF dérivés et recense les décisions à prendre.
 
-- une regle metier change;
-- un parcours utilisateur change;
-- une decision produit est prise;
-- une fonctionnalite passe de "a faire" a "implemente";
-- une ambiguite produit est clarifiee.
+## Quand le lire
+
+Lire ce dossier avant de créer ou de modifier une fonctionnalité importante.
+
+## Quand le mettre à jour
+
+Mettre à jour ce dossier lorsqu’une règle métier, un parcours, un budget, un planning ou une priorité fonctionnelle change.
+
+Toute évolution issue d’un PDF doit être expliquée ici sans modifier le PDF historique.

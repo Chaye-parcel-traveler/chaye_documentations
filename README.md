@@ -1,234 +1,105 @@
 # Chaye Documentations
 
-Ce repo est la documentation produit et organisationnelle de Chaye.
+Ce dépôt rassemble la documentation produit et organisationnelle transverse de Chaye.
 
-Il vit en **francais**. Les noms techniques restent en anglais quand ils correspondent a du code, des endpoints, des champs JSON, des labels GitHub ou des commandes.
+Il est rédigé en français. Les termes techniques restent en anglais lorsqu’ils correspondent à du code, à un endpoint, à un champ, à une commande, à un label GitHub ou à un nom de fichier.
 
-Exemple:
+## Objectif
 
-```text
-Un utilisateur suspendu ne peut pas appeler `POST /announcements`.
-Le ticket porte le label `risk:legal`.
-```
+Ce dépôt permet :
 
-## A Quoi Sert Ce Repo ?
-
-Ce repo sert a expliquer le produit avant de coder.
-
-Il doit aider:
-
-- un nouveau membre de l'equipe a comprendre Chaye;
-- un dev a savoir quoi implementer;
-- un reviewer a verifier si une PR respecte le besoin;
-- un agent IA a travailler sans inventer les regles produit;
-- l'equipe a garder une trace des decisions.
+- à un nouveau membre de comprendre le produit ;
+- à l’équipe produit de formaliser ses décisions ;
+- aux développeurs de savoir quel comportement implémenter ;
+- aux reviewers de vérifier l’alignement d’une PR ;
+- aux agents IA de travailler sans inventer de règle ;
+- à l’équipe de conserver l’historique entre les PDF initiaux et les décisions plus récentes.
 
 ```mermaid
 flowchart LR
-    Docs["chaye_documentations<br/>Source produit en francais"] --> API["chaye_API<br/>Implementation backend"]
-    Docs --> FE["chaye_web_frontend<br/>Implementation frontend"]
-
-    API --> APIDocs["Docs techniques API<br/>AGENTS.md, quality gates, architecture code"]
-    FE --> FEDocs["Docs techniques frontend<br/>AGENTS.md, quality gates, architecture UI"]
+    PDF["PDF historiques<br/>immuables"] --> Docs["Documents Markdown explicatifs<br/>décisions courantes"]
+    Docs --> Issues["GitHub Issues"]
+    Issues --> API["chaye_API"]
+    Issues --> Frontend["chaye_web_frontend"]
 ```
 
-## Regle Simple
-
-Avant de coder une fonctionnalite importante, la regle produit doit etre claire ici.
-
-Si une question produit revient plusieurs fois, il faut l'ecrire ici.
-
-Si une decision est prise en review ou en discussion, il faut la tracer ici.
-
-```mermaid
-flowchart TD
-    Question["Question produit"] --> Clear{"La reponse existe ici ?"}
-    Clear -- Oui --> Use["On utilise la doc existante"]
-    Clear -- Non --> Write["On ajoute ou corrige la doc"]
-    Write --> Review["Review produit / tech"]
-    Review --> Tickets["Issues API / Frontend"]
-    Tickets --> Code["Implementation"]
-```
-
-## Ce Qui Va Dans Ce Repo
+## Sources de vérité
 
 | Sujet | Emplacement |
 | --- | --- |
-| Vision produit | `produit/vision.md` |
-| Glossaire | `produit/glossaire.md` |
-| Parcours utilisateur | `produit/parcours-utilisateur.md` |
-| Specification fonctionnelle | `produit/specification.md` |
-| Backlog produit | `produit/backlog.md` |
-| Tracabilite besoin -> issue -> PR | `produit/tracabilite.md` |
-| Mentions legales, CGU, moderation | `conformite/` |
-| Processus equipe et agentique | `processus/` |
-| Contrats API valides cote produit | `contrats/` |
-| Decisions structurantes | `decisions/` |
-| Diagrammes explicatifs | `diagrammes/` |
-| Documents PDF d'origine | `sources-pdf/` |
+| PDF historiques initiaux | `sources-pdf/` |
+| Audit des convergences et divergences | `produit/alignement-des-sources.md` |
+| Vision, règles métier et parcours | `produit/` |
+| Conformité, rôles et règles de confiance | `conformite/` |
+| Processus d’équipe et agentiques | `processus/workflow-agentique.md` |
+| Décisions structurantes | `decisions/` |
+| Contrats fonctionnels transverses | `contrats/` |
+| Diagrammes complémentaires | `diagrammes/` |
+| Contrats HTTP publics | `../chaye_API/docs/openapi/openapi.yaml` |
+| Backlog et statut du travail | GitHub Issues et PR |
 
-## Ce Qui Ne Va Pas Ici
+## Règle concernant les PDF
 
-Ce repo ne doit pas devenir un double du code.
+Les PDF de `sources-pdf/` ne doivent jamais être modifiés, remplacés ou régénérés par un agent.
 
-Ne mets pas ici:
+Ils représentent l’état historique initial du projet. Toute correction ou évolution fonctionnelle doit être ajoutée dans un Markdown explicatif qui :
 
-- les details d'installation propres a un seul repo technique;
-- les commandes de test tres specifiques a l'API ou au frontend;
-- les notes temporaires d'une branche;
-- les gros extraits de code;
-- les informations secretes;
-- les fichiers `.env`;
-- les mots de passe, tokens, cles API ou identifiants prives.
-
-Ces informations restent dans:
-
-- `chaye_API/AGENTS.md`;
-- `chaye_API/docs/`;
-- `chaye_web_frontend/AGENTS.md`;
-- `chaye_web_frontend/docs/`.
-
-## Comment Utiliser Ce Repo Quand Tu Rejoins Le Projet
-
-Lis dans cet ordre:
-
-1. `README.md`
-2. `produit/README.md`
-3. `produit/glossaire.md`
-4. `produit/parcours-utilisateur.md`
-5. `processus/onboarding-nouveau-dev.md`
-6. `processus/issues-github.md`
-7. `processus/travail-agentique.md`
-8. `processus/github-cli-gh.md`
-9. `processus/granularite-issues-agentiques.md`
-10. `processus/tests-docker-first.md`
-11. `processus/workflow-pr-agentique.md`
-12. `conformite/README.md`
-13. `sources-pdf/README.md`
+1. cite le PDF et les pages concernés ;
+2. décrit la divergence ;
+3. indique la décision courante, si elle a été validée ;
+4. mentionne les validations encore nécessaires ;
+5. référence les issues ou PR d’implémentation.
 
 ```mermaid
 flowchart TD
-    Start["Je rejoins le projet"] --> Readme["Lire README.md"]
-    Readme --> Produit["Comprendre le produit<br/>produit/"]
-    Produit --> Processus["Comprendre comment travailler<br/>processus/"]
-    Processus --> Conformite["Connaitre les contraintes legales<br/>conformite/"]
-    Conformite --> Sources["Connaitre les PDF sources<br/>sources-pdf/"]
-    Sources --> Issue["Choisir une issue GitHub"]
+    Source["PDF historique"] --> Écart{"Écart identifié ?"}
+    Écart -- Non --> Référence["Conserver la référence"]
+    Écart -- Oui --> Markdown["Créer ou modifier un Markdown explicatif"]
+    Markdown --> Validation["Validation produit, juridique, financière ou technique"]
+    Validation --> Issues["Issues d’implémentation"]
 ```
 
-## Workflow Avec Les Issues GitHub
+## Parcours de lecture recommandé
 
-Les issues GitHub restent le lieu de pilotage du travail.
+1. `README.md`
+2. `sources-pdf/README.md`
+3. `produit/README.md`
+4. `produit/alignement-des-sources.md`
+5. `conformite/README.md`
+6. `processus/README.md`
+7. `processus/workflow-agentique.md`
+8. l’issue GitHub liée au travail
 
-Ce repo sert a cadrer le besoin. Les repos `chaye_API` et `chaye_web_frontend` servent a implementer.
+## Ce qui ne doit pas être dupliqué ici
 
-```mermaid
-flowchart LR
-    Need["Besoin produit"] --> DocIssue["Issue documentation"]
-    DocIssue --> DocPR["PR documentation"]
-    DocPR --> Ready["Besoin clarifie"]
-    Ready --> APIIssue["Issue API"]
-    Ready --> FEIssue["Issue frontend"]
-    APIIssue --> APIPR["PR API"]
-    FEIssue --> FEPR["PR frontend"]
-```
+Ce dépôt ne doit pas contenir :
 
-### Quand Creer Une Issue Dans Ce Repo ?
+- les commandes d’installation propres à un seul dépôt technique ;
+- les détails internes d’une implémentation locale ;
+- une copie manuelle du contrat OpenAPI ;
+- un backlog Markdown parallèle aux GitHub Issues ;
+- des secrets, tokens, mots de passe ou fichiers `.env` ;
+- une correction directe d’un PDF historique.
 
-Cree une issue ici quand:
+## Qualité rédactionnelle
 
-- une regle produit est floue;
-- une decision doit etre discutee;
-- une documentation manque;
-- un parcours utilisateur doit etre decrit;
-- une contrainte legale ou organisationnelle doit etre clarifiee;
-- une specification doit etre mise a jour avant implementation.
+Chaque document modifié doit être relu pour vérifier :
 
-### Quand Creer Une Issue Dans API Ou Frontend ?
+- les accents ;
+- l’orthographe ;
+- les accords ;
+- la ponctuation ;
+- la cohérence des termes ;
+- la distinction entre fait, hypothèse, recommandation et décision validée.
 
-Cree une issue dans `chaye_API` ou `chaye_web_frontend` quand:
+Une formulation juridique ou financière non accompagnée d’une preuve doit rester présentée comme un point à valider.
 
-- le besoin est assez clair pour etre implemente;
-- les criteres d'acceptation sont compréhensibles;
-- les impacts techniques sont identifies;
-- le ticket peut etre code et teste.
+## Liens avec les dépôts techniques
 
-## Regles De Langue
-
-Le repo documentation vit en francais.
-
-```mermaid
-flowchart TB
-    FR["Francais obligatoire"] --> FR1["Explications produit"]
-    FR --> FR2["Regles metier"]
-    FR --> FR3["Processus equipe"]
-    FR --> FR4["Decisions produit"]
-    FR --> FR5["Issues et PRs de documentation"]
-
-    TECH["Termes techniques conserves"] --> T1["Endpoints: `POST /members`"]
-    TECH --> T2["Champs: `user.status`"]
-    TECH --> T3["Labels: `agent:ready`"]
-    TECH --> T4["Commandes: `npm run build`"]
-```
-
-Mauvais:
-
-```text
-The suspended user cannot create an announcement.
-```
-
-Bon:
-
-```text
-L'utilisateur suspendu ne peut pas creer une annonce via `POST /announcements`.
-```
-
-## Toujours Ajouter Une Note Explicative
-
-Quand tu ajoutes un nouveau dossier ou une nouvelle documentation structurante, ajoute une note pour expliquer:
-
-- a quoi sert le document;
-- qui doit le lire;
-- quand le mettre a jour;
-- quels repos ou issues sont concernes.
-
-Exemple:
-
-```text
-Ce document decrit le parcours de signalement.
-Il doit etre lu avant toute issue liee a la moderation.
-Il doit etre mis a jour si le delai de traitement ou le statut des signalements change.
-```
-
-Cette regle evite les documents "morts" que personne ne sait utiliser.
-
-## Definition D'Une Bonne Mise A Jour De Doc
-
-Une PR de documentation est prete quand:
-
-- elle est ecrite en francais clair;
-- elle explique pourquoi le changement existe;
-- elle ne duplique pas inutilement les repos techniques;
-- elle relie le besoin aux issues ou PRs concernees;
-- elle met a jour la tracabilite si le statut du besoin change;
-- elle ajoute une note explicative si un nouveau document structurant est cree.
-
-```mermaid
-flowchart LR
-    Clear["Clair"] --> Useful["Utile"]
-    Useful --> Linked["Lie aux issues / PRs"]
-    Linked --> Updated["Tracabilite mise a jour"]
-    Updated --> Review["Pret pour review"]
-```
-
-## Liens Avec Les Repos Techniques
-
-| Repo | Role |
+| Dépôt | Rôle |
 | --- | --- |
-| `chaye_documentations` | Source produit et workflow transverse en francais |
-| `chaye_API` | Implementation backend, docs techniques API, quality gates API |
-| `chaye_web_frontend` | Implementation frontend, docs techniques frontend, quality gates frontend |
+| `chaye_documentations` | Produit, conformité et workflow transverse |
+| `chaye_API` | Backend, OpenAPI et documentation technique API |
+| `chaye_web_frontend` | Frontend et documentation technique frontend |
 
-Si une information produit est dans un repo technique mais concerne toute l'equipe, elle doit etre deplacee ou resumee ici.
-
-Si une information est purement technique et ne concerne qu'un repo, elle reste dans ce repo.
+Une information transverse doit être expliquée ici. Une information purement technique reste dans le dépôt qui en est propriétaire.

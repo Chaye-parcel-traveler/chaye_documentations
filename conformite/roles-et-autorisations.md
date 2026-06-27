@@ -1,60 +1,64 @@
-# Roles Et Autorisations
+# Rôles et autorisations
 
-Ce document explique comment Chaye distingue les utilisateurs standards des administrateurs.
+Ce document explique comment Chaye distingue les utilisateurs classiques des administrateurs.
 
-Il doit etre lu avant toute issue liee:
+Il doit être lu avant toute issue liée :
 
-- a un back-office;
-- a la moderation;
-- a la suspension de compte;
-- aux signalements;
-- a une action reservee a l'equipe Chaye.
+- à un back-office ;
+- à la modération ;
+- à la suspension d’un compte ;
+- aux signalements ;
+- à une action réservée à l’équipe Chaye.
 
-Il doit etre mis a jour si un nouveau role est ajoute ou si une regle d'autorisation change.
+Il doit être mis à jour lorsqu’un rôle ou une règle d’autorisation change.
 
-## Regle Actuelle
+## Règle actuelle
 
-Un administrateur doit etre identifie par un etat explicite, pas par une donnee detournee comme une adresse postale.
+Un administrateur doit être identifié par un état explicite, jamais par une donnée détournée telle qu’une adresse postale.
 
-Cote API, la source technique actuelle est:
+Côté API, la source technique actuelle est :
 
 ```text
 members.role
 ```
-
-Valeurs connues:
 
 | Valeur | Signification |
 | --- | --- |
 | `user` | Utilisateur standard |
 | `admin` | Administrateur Chaye |
 
-## Regle De Securite
+## Règle de sécurité
 
-Une action admin ne doit jamais dependre:
+Une action d’administration ne doit jamais dépendre :
 
-- de `members.address`;
-- d'un email code en dur;
-- d'un nom ou prenom;
-- d'une valeur modifiable par l'utilisateur.
+- de `members.address` ;
+- d’un email codé en dur ;
+- d’un nom ou d’un prénom ;
+- d’une valeur modifiable par l’utilisateur.
 
 ```mermaid
 flowchart TD
-    Action["Action sensible"] --> Auth{"Utilisateur authentifie ?"}
+    Action["Action sensible"] --> Auth{"Utilisateur authentifié ?"}
     Auth -- Non --> Refus["Refuser"]
-    Auth -- Oui --> Role{"members.role = admin ?"}
-    Role -- Non --> Refus
-    Role -- Oui --> Autoriser["Autoriser l'action admin"]
+    Auth -- Oui --> Rôle{"members.role = admin ?"}
+    Rôle -- Non --> Refus
+    Rôle -- Oui --> Autoriser["Autoriser l’action"]
 ```
 
-## Impact Produit
+## Impact produit
 
-Cette regle est necessaire avant de construire:
+Cette règle est nécessaire avant de construire :
 
-- le back-office de moderation;
-- la liste admin des signalements;
-- les actions de suspension;
-- les decisions de mediation;
+- le back-office de modération ;
+- la liste des signalements ;
+- les actions de suspension ;
+- les décisions de médiation ;
 - les outils internes de support.
 
-Sans role explicite, une fonctionnalite admin est consideree trop risquee pour etre mise en production.
+Sans rôle explicite, une fonctionnalité d’administration est trop risquée pour une mise en production.
+
+## Lien avec les PDF
+
+Le cahier des charges mentionne des rôles `admin` et `super-admin` (`Chaye_CDC_V3.1_Final.pdf`, p. 9), tandis que le brief technique demande un back-office sans décrire précisément la hiérarchie des rôles (`Chaye_Brief_Technique.pdf`, p. 1).
+
+La présence de `super-admin` reste donc à confirmer par une décision produit avant implémentation.
