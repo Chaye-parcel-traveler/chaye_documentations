@@ -166,7 +166,7 @@ flowchart TD
 Les commandes exactes restent dans les dépôts techniques :
 
 - `../chaye_API/AGENTS.md` ;
-- `../chaye_API/docs/quality-gates.md` ;
+- `../chaye_API/README.md` ;
 - `../chaye_web_frontend/AGENTS.md` ;
 - `../chaye_web_frontend/docs/quality-gates.md`.
 
