@@ -31,7 +31,7 @@ Il sert à cadrer :
 Les détails techniques propres à un seul dépôt restent dans :
 
 - `../chaye_API/AGENTS.md` et `../chaye_API/docs/` ;
-- `../chaye_web_frontend/AGENTS.md` et `../chaye_web_frontend/docs/`.
+- `../chaye_web_frontend/AGENTS.md` et `../chaye_web_frontend/README.md`.
 
 ## Sources PDF immuables
 
