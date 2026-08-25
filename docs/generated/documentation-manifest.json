@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-08-25",
+  "documentation": [
+    {
+      "path": "docs/architecture/backend.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/architecture/database.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/architecture/frontend.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/architecture/mobile.md",
+      "status": "generated"
+    },
+    {
+      "path": "docs/architecture/overview.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/functions/announcements/overview.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/functions/cooperations/overview.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/functions/identity/overview.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/functions/messaging/overview.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/functions/recipients/overview.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/infrastructure/ci-cd.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/infrastructure/docker.md",
+      "status": "mixed"
+    },
+    {
+      "path": "docs/repositories/chaye_API.md",
+      "status": "generated"
+    },
+    {
+      "path": "docs/repositories/chaye_database.md",
+      "status": "generated"
+    },
+    {
+      "path": "docs/repositories/chaye_mobile.md",
+      "status": "generated"
+    },
+    {
+      "path": "docs/repositories/chaye_web_frontend.md",
+      "status": "generated"
+    },
+    {
+      "path": "docs/security/branch-governance.md",
+      "status": "manual"
+    },
+    {
+      "path": "docs/security/secrets.md",
+      "status": "manual"
+    }
+  ]
+}
