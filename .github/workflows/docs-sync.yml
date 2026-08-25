@@ -1,0 +1,59 @@
+name: Documentation synchronization
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '41 4 * * 1'
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.3
+        with:
+          fetch-depth: 0
+      - name: Read public sources without an administrator token
+        id: sources
+        continue-on-error: true
+        run: |
+          for repo in chaye_API chaye_database chaye_mobile chaye_web_frontend; do
+            git clone --depth=1 "https://github.com/Chaye-parcel-traveler/${repo}.git" "$RUNNER_TEMP/$repo"
+          done
+      - name: Report inaccessible sources
+        if: steps.sources.outcome != 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          existing="$(gh issue list --label documentation-sync --state open --json number --jq '.[0].number // empty')"
+          if [ -z "$existing" ]; then
+            gh issue create --title 'Documentation sync cannot read every source repository' --body 'At least one source is not public. Manual remediation is required; no administrator token will be stored in Actions.'
+          fi
+          exit 1
+      - name: Regenerate documentation inventories
+        if: steps.sources.outcome == 'success'
+        run: |
+          export SOURCE_GENERATED_AT="$(date -u +%Y-%m-%d)"
+          node scripts/sync-docs.mjs \
+            "chaye_API=$RUNNER_TEMP/chaye_API@$(git -C "$RUNNER_TEMP/chaye_API" rev-parse HEAD)" \
+            "chaye_database=$RUNNER_TEMP/chaye_database@$(git -C "$RUNNER_TEMP/chaye_database" rev-parse HEAD)" \
+            "chaye_mobile=$RUNNER_TEMP/chaye_mobile@$(git -C "$RUNNER_TEMP/chaye_mobile" rev-parse HEAD 2>/dev/null || echo EMPTY)" \
+            "chaye_web_frontend=$RUNNER_TEMP/chaye_web_frontend@$(git -C "$RUNNER_TEMP/chaye_web_frontend" rev-parse HEAD)"
+      - name: Open a PR only when content changed
+        if: steps.sources.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- docs/generated; then exit 0; fi
+          branch="automation/docs-sync-$(date -u +%Y%m%d)-$(git -C "$RUNNER_TEMP/chaye_API" rev-parse --short HEAD)"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git switch -c "$branch"
+          git add docs/generated
+          git commit -m 'docs: synchronize source manifests'
+          git push origin "$branch"
+          gh pr create --base "${{ github.event.repository.default_branch }}" --head "$branch" --title 'docs: synchronize source manifests' --body 'Automated update. Human review required; no auto-merge.'

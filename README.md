@@ -2,6 +2,11 @@
 
 Ce dépôt rassemble la documentation produit et organisationnelle transverse de Chaye.
 
+La documentation technique centrale est aussi organisée par fonction métier
+dans `docs/functions/`, avec les vues d'architecture, d'infrastructure et de
+sécurité sous `docs/`. Les inventaires `docs/generated/` sont reproductibles et
+mis à jour uniquement par Pull Request, sans auto-merge.
+
 Il est rédigé en français. Les termes techniques restent en anglais lorsqu’ils correspondent à du code, à un endpoint, à un champ, à une commande, à un label GitHub ou à un nom de fichier.
 
 ## Objectif
